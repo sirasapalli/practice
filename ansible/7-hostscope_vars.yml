@@ -1,0 +1,13 @@
+---
+- name: creting a user using host scope vars
+  become: yes
+  hosts: ubuntu@172.31.92.178
+  tasks:
+    - name: creta user 
+      user:
+        name: "{{a}}"
+        password: "{{b}}"
+        uid: "{{c}}"
+        home: "{{d}}"
+        shell: "{{e}}"
+

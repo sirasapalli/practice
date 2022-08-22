@@ -1,0 +1,13 @@
+---
+- name: global scope variables 
+  hosts: all
+  gather_facts: false
+  become: yes
+  tasks:
+    - name: install/uninstall packages
+      apt:
+        name: "{{a}}"
+        state: "{{b}}"
+        update_cache: "{{c}}"
+
+

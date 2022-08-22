@@ -1,0 +1,22 @@
+---
+- name: configuring httpd
+  hosts: all
+  tasks:
+    - name: install httpd
+      yum: 
+       name: httpd
+       state: present
+       update_cache: yes
+    - name: edit the index.html file
+      copy:
+        content: "welcome hfkdkdjdlshsli"
+        dest: /var/www/html/index.html
+    - name: resart httpd
+      service:
+        name: httpd
+        state: restarted
+    - name: check url response of httpd on server 1
+      uri:
+        url: http://54.175.8.153:80
+        status_code: 200
+

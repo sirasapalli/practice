@@ -1,0 +1,23 @@
+---
+- name: installing/unistallimg/upgatingg packages
+  hosts: dev
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: installing packges
+      apt:
+        name: "{{item.name}}"
+        state: "{{item.state}}"
+        update_cache: no
+      with_items:
+        - {name: git,state: absent}
+        - {name: maven,state: latest}
+        - {name: tree,state: present}
+- name: installing packages on localhost
+  hosts: localhost
+  tasks:
+    - name: intall tree
+      yum:
+        name: tree
+        state: present
+        update_cache: yes

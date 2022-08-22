@@ -1,0 +1,36 @@
+---
+- name: tomcat9 configuration
+  hosts: all
+  tasks:
+    - name: installation
+      apt:
+       name: tomcat9
+       state: present
+       update_cache: yes
+    - name: installing tomcat-admin
+      apt:
+        name: tomcat9-admin
+        state: present
+    - name: copy the tomcat-users.xml file
+      copy:
+       src: tomcat-users.xml
+       dest: /etc/tomcat9
+    - name: change port of tomcat from 8080 to 9090
+      replace:
+       regexp: 8080
+       replace: 9090
+       path: /etc/tomcat9/server.xml
+    - name: restart tomcat9
+      service:
+       name: tomcat9
+       state: restarted
+    - name: on eminute pause
+      pause:
+        minutes: 1
+    - name: check sserver respoonse
+      uri:
+       url: "{{item}}"
+      with_items:
+         - http://34.203.206.109:9090
+         - http://3.86.58.116:9090
+

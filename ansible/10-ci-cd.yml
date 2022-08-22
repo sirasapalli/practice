@@ -1,0 +1,49 @@
+---
+- name: install jenkins and other packages on localhost
+  hosts: localhost
+  tasks:
+    - name: install packages
+      yum:
+        name: "{{item}}"
+        state: present
+        update_cache: yes
+      with_items:
+        - git
+        - maven
+        - java-11
+    - name: downloding jenkins
+      shell: 'wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo'
+      shell: 'rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key'
+      shell: 'yum install jenkins -y'
+      shell: 'systemctl start jenkins'
+- name: installing tomcat on test and prod servers
+  hosts: all
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: installing tomcat and tomcat-admin
+      apt:
+        name: ["tomcat9","tomcat9-admin"]
+        state: present
+        update_cache: yes
+    - name: coping tomcat-users.xml file
+      copy:
+        src: tomcat-users.xml
+        dest: /etc/tomcat9
+    - name: changing port numbers from 8080 to 9999
+      replace:
+        regexp: 8080
+        replace: 8888
+        path: /etc/tomcat9/server.xml
+    - name: restarting tomcat9
+      service:
+        name: tomcat9
+        state: restarted
+    - name: pause for 1 min
+      pause:
+        minutes: 1
+    - name: cheking server response
+      uri:
+        url: http://52.207.238.102:8888
+        url: http://3.91.57.192:8888
+

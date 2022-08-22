@@ -1,0 +1,12 @@
+---
+- name: Variables to work on a group of hosts
+  hosts: dev
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: install firewall 
+      apt:
+        name: "{{name}}"
+        state: "{{password}}"
+        update_cache: "{{cache}}"
+
