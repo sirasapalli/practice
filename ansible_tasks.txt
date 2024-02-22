@@ -1,0 +1,34 @@
+ansible questions:
+
+what is ansible?
+difference between ansible , chef, puppet?
+prerequisites for ansible?
+what is playbook?
+what is role?
+difference between playbook and role?
+what is inventory file?
+what is module?
+what type of playbook or role you have worked?
+How to replace a line or word in a file using ansible playbook ?
+How to clone a git repo in ansible ?
+Disable selinux , firewalls?
+Create docker container in ansible ?
+Kernel upgrade using ansible ?
+EC2,S3 creation in ansible ?
+Set password less authentication using ansible ?
+User and group creation?
+Check user exist or not and if no user create a user?
+Create a docker image using ansible ?
+Verify file exists or not ?
+Copy a file from URl using ansible ?
+Copy a file using ansible ?
+Check package version if package version is less than desired then upgrade the package?
+Create a security group and open ports?
+Create Ami using ansible?
+Check server status and restart the server?
+Create a snapshot using ansible ?
+auto addition of client in inventory file?
+how to run playbook with sudo access on clients?
+how to run single playbook with different users in single client?
+1) i have 10 tasks , out of it if 5th task failed also my playbook should be proceeded?
+2) i have 10 tasks , out of it if 5th task failed proceed from 7th task if not failed proceed from 6th task?

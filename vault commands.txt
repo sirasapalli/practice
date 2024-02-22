@@ -1,0 +1,34 @@
+1.To create a new  file with encrypt code
+
+ansible-vault create filename.yml
+New vault password:
+confirm new vault password:
+
+2.To create a encrypt code for a existing file
+
+ansible-vault encrypt filename.yml
+
+3.To decrypt the code
+
+ansible-vault decrypt filename.yml
+vault password:
+
+4. if you want to change the password
+
+ansible-vault rekey filename.yml
+vault password:
+new vault password:
+confirm new vault password:
+
+5.if you want to access a encrypted file in playbook
+
+ansible-playbook --ask-vault-pass playbook.yml
+vault password:
+
+> everytime if we want to acess a encrypt file in playbook without entering the password
+   ->first we have to create a file with password 
+     vi vaultpass
+     >enter the  same password which you have given before
+
+ ansible-playbook --vault-password-file=vaultpass playbook.yml 
+
